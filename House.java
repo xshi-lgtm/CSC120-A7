@@ -19,7 +19,7 @@ public class House extends Building implements HouseRequirements{
     * @param hasDiningRoom whether the house has a dining room
     * @throws RuntimeException if nFloors < 1 (enforced by Building)
     */
-  public House(String name, String address, int nFloors, boolean hasDiningRoom, ArrayList<Student> residents){
+  public House(String name, String address, int nFloors, boolean hasDiningRoom){
     super(name, address, nFloors);
     this.hasDiningRoom = hasDiningRoom;
     this.residents = new ArrayList<Student>();
@@ -29,14 +29,17 @@ public class House extends Building implements HouseRequirements{
   /** @return true if the house has a dinning room, false otherwise */
   public boolean hasDiningRoom(){
     return this.hasDiningRoom;
-  }; 
+  }
+
   /** @return the number of current residents */
   public int nResidents(){
     return this.residents.size();
-  }; 
+  }
+
   /**
    * Move a student into the house
    * @param s the student to move in
+   * @throws IllegalArgumentException if s is already a resident
    */
   public void moveIn(Student s){
     if (!this.residents.contains(s)){
@@ -49,9 +52,11 @@ public class House extends Building implements HouseRequirements{
    * Move a student out of the house
    * @param s
    * @return the student that moved out, or null if s was not a resident
+   * @throws IllegalArgumentException if s is not a resident
    */
   public Student moveOut(Student s){
-    if (this.residents.remove(s)){
+    if (this.residents.contains(s)){
+      this.residents.remove(s);
       return s;
     }
     else {
@@ -64,10 +69,10 @@ public class House extends Building implements HouseRequirements{
    */
   public boolean isResident(Student s){
     return this.residents.contains(s);
-  };
+  }
 
   public static void main(String[] args) {
-    House ziskindHouse = new House("Ziskind House", "1 Henshaw Ave", 3, true, new ArrayList <Student>());
+    House ziskindHouse = new House("Ziskind House", "1 Henshaw Ave", 3, true);
     System.out.println("ziskind");
     Student a = new Student("Cola", "991473004", 2028);
     Student b = new Student("Amy", "991472006", 2028);

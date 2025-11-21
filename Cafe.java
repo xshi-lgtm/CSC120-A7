@@ -19,12 +19,12 @@ public class Cafe extends Building implements CafeRequirements{
      * @param nCups the number of cups in the stock
      */
     public Cafe(String name, String address, int nFloors, int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
-        System.out.println("You have built a cafe: ☕");
         super(name, address, nFloors);
         this.nCoffeeOunces = nCoffeeOunces;
         this.nSugarPackets = nSugarPackets;
         this.nCreams = nCreams;
         this.nCups = nCups;
+        System.out.println("You have built a cafe: ☕");
     }
 
 
@@ -41,6 +41,9 @@ public class Cafe extends Building implements CafeRequirements{
             this.nSugarPackets -= nSugarPackets;
             this.nCreams -= nCreams;
             this.nCups -= 1;
+        } else {
+            System.out.println("Sorry, we are out of stock for your order.");
+            restock(50,50,50,50);
         }
 
     }
@@ -54,10 +57,10 @@ public class Cafe extends Building implements CafeRequirements{
      * @param nCups number of cups to be restocked
      */
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
-        this.nCoffeeOunces = nCoffeeOunces;
-        this.nSugarPackets = nSugarPackets;
-        this.nCreams = nCreams;
-        this.nCups = nCups;
+        this.nCoffeeOunces += nCoffeeOunces;
+        this.nSugarPackets += nSugarPackets;
+        this.nCreams += nCreams;
+        this.nCups += nCups;
     }
     
     /**

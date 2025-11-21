@@ -30,6 +30,7 @@ public class Library extends Building implements LibraryRequirements {
    * Remove a title from the collection.
    * @param title the title to remove
    * @return the removed title
+   * @throws IllegalArgumentException if the title is not found in the collection
    */
   public String removeTitle(String title){
     if(collection.containsKey(title)){
@@ -42,6 +43,7 @@ public class Library extends Building implements LibraryRequirements {
   /**
    * Check out a title from the collection.
    * @param title the title to check out
+   * @throws IllegalArgumentException if the title is not found or already checked out
    */
   public void checkOut(String title){
     if(collection.containsKey(title)){
@@ -58,6 +60,7 @@ public class Library extends Building implements LibraryRequirements {
   /**
    * Return a title to the collection.
    * @param title the title to return
+   * @throws IllegalArgumentException if the title is not found or already in the collection
    */
   public void returnBook(String title){
     if(collection.containsKey(title)){
